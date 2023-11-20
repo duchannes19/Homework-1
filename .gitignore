@@ -151,8 +151,14 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+blindtest1_predictions.csv
+blindtest2_predictions.csv
 blind_test1.csv
 blind_test2.csv
 dataset1.csv
 dataset2.csv
 load_data.py
+report.aux
+report.fdb_latexmk
+report.fls
+report.synctex.gz
