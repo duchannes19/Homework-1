@@ -91,5 +91,44 @@ F1-score is useful when there is an uneven class distribution or when false posi
 \subsection{Support}
 Support refers to the number of actual instances of each class in the dataset. It is the count of true positive and true negative instances for each class. Support is not directly involved in the calculation of precision, recall, or F1-score, but it provides context by showing how many instances belong to each class.
 
+\begin{titlepage}
+  \begin{center}
+    {\Huge\bfseries Classification\par}
+  \end{center}
+  \vspace{2cm}
+
+  \section{Data Loading and Splitting}
+
+  \subsection{Loading Dataset 1}
+  The data loading process begins with dataset 1, where the feature matrix \(X\) and label vector \(Y\) are extracted using the \texttt{load\_data} function. An informative message is printed to indicate the commencement of this operation. The resulting shape of matrix \(X\) is then presented, providing insights into the number of samples and features within dataset 1.
+  
+  \subsection{Loading Dataset 2}
+  An analogous procedure is employed for dataset 2. The feature matrix \(X2\) and label vector \(Y2\) are obtained through the \texttt{load\_data} function. A corresponding message is printed, and the shape of \(X2\) is displayed to convey the dataset's sample and feature dimensions.  
+    
+  \subsection{Splitting Data}
+  The subsequent steps involve splitting the loaded data into training and testing sets:
+  
+  \begin{verbatim}
+  X_train1, X_test1, Y_train1, Y_test1 = train_test_split(X, Y, ...)
+    ...
+  X_train4, X_test4, Y_train4, Y_test4 = train_test_split(X2, Y2, ...)
+  \end{verbatim}
+  
+  Utilizing the \texttt{train\_test\_split} function, both dataset 1 and dataset 2 are partitioned into training and testing sets. Each dataset undergoes this process twice, resulting in four sets per dataset. 
+  The \texttt{test\_size} parameter dictates the proportion allocated for testing (20\%), while \texttt{random\_state} ensures reproducibility.
+  \newline
+  \newline
+  The code concludes by acknowledging the completion of data loading and splitting.
+  \newline
+  \newline
+  The resulting variables (\(X\_train1\), \(X\_test1\), \(Y\_train1\), \(Y\_test1\), etc.) are now ready for subsequent machine learning tasks.    
+
+\end{titlepage} 
+
+\begin{titlepage}
+  \section*{Model Selection}
+  
+\end{titlepage}
+
 
 \end{document}
