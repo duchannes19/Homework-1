@@ -2,6 +2,7 @@
 \documentclass{article}
 \usepackage{amsmath}
 \usepackage{graphicx}
+\usepackage{subcaption}
 
 \begin{document}
 
@@ -66,7 +67,7 @@
   \newline
   \newline
   Since the dataset is already vectorized, no further preprocessing is needed at the moment.
-
+  
   \section{Metrics}
   The metrics used to evaluate the models are the accuracy and the confusion matrix.
   \newline
@@ -126,7 +127,7 @@
   \newline
   The resulting variables (\(X\_train1\), \(X\_test1\), \(Y\_train1\), \(Y\_test1\), etc.) are now ready for subsequent machine learning tasks.
 
-  \section*{First Evaluation and Model Selection}
+  \section*{First Evaluation with Binary Classification}
   After the data is loaded and splitted, the user is prompted to choose which of the dataset to use and then what type of model to use for the classification task. The user can choose between:
   \section{Bernoulli}
   BernoulliNB is a Naive Bayes classifier specifically tailored for multivariate Bernoulli models. Similar to MultinomialNB, this classifier is well-suited for handling discrete data.
@@ -202,7 +203,7 @@
     \label{fig:sample3}
   \end{figure}
 
-  \section*{Second Evaluation and Model Selection}
+  \section*{Second Evaluation with Multiclass Classification}
   In this second batch we are using the same models as before, but with a different approach to the data.
 
   \section{Bernoulli to MultinomialNB}
@@ -228,9 +229,77 @@
 
   \section{SVM}
   The SVM was perfoming well, but I want to give a slight modification to the hyperparameters, so I'm going to use polynomial kernel instead of linear.
+  \newline
+  \newline
+  The model seems to performs better this way, in detail:
 
+  \begin{itemize}
+    \item The accuracy is around 99\%, way better than the 83\% of the linear kernel.
+    \item The recall, precision and F1-scores are better too, with a minimum of 0.96, 0.97 and 0.97 respectively.
+    \item Support values remain consistent, indicating that the number of instances for each class in the dataset is not significantly affected by the change in the kernel.
+  \end{itemize}
+
+  Overall the SVM with a poly kernel achieves a higher performance than the previous one ($linear$) and seems to be better suited for this type of dataset.
+  \newline
+  \newline
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.58\textwidth]{SVM2CM.png}
+    \caption{Confusion Matrix for SVM with poly kernel}
+    \label{fig:sample5}
+  \end{figure}
+
+  \newpage
+
+  \section{Logistic Regression}
+  The Logistic Regression actually performed well even if it didn't converge, so I'm going to use the same model but with a different solver, to see if there could be any improvement.
+
+  \begin{itemize}
+    \item Tried the $newton$-$cg$ solver, it converged but gave a lower performance: accuracy of 0.88, recall of 0.84, precision of 0.86 and f1-score of 0.86.
+    \item Tried the $sag$ solver, it gave a similar performance if slightly worse.
+    \item Tried the $newton$-$cholesky$ solver, it converged but the result was similar to the $newton-cg$ solver: accuracy of 0.86, recall of 0.83, precision of 0.94 and f1-score of 0.84.
+    \item Tried the $liblinear$ solver, it converged but the result was still worse than the $saga$ solver: accuracy of 0.86, recall of 0.84, precision of 0.92 and f1-score of 0.85.
+    \item Lastly the $lbfgs$ solver, it converged but the result was medium: accuracy of 0.89, recall of 0.90, precision of 0.95 and f1-score of 0.89.
+  \end{itemize}
+
+  The Logistic Regression model with the $saga$ solver still seems to be the best choice.
+
+  \begin{figure}[htbp]
+    \centering
+    \begin{subfigure}[t]{0.3\linewidth}
+      \includegraphics[width=\linewidth]{LRMC(lbfgs).png}
+      \caption{$lbfgs$ solver}
+      \label{fig:sample6a}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+      \includegraphics[width=\linewidth]{LRMC(liblinear).png}
+      \caption{$liblinear$ solver}
+      \label{fig:sample6b}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+      \includegraphics[width=\linewidth]{LRMC(newton-cg).png}
+      \caption{$newton$-$cg$ solver}
+      \label{fig:sample6c}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+      \includegraphics[width=\linewidth]{LRMC(newton-cholesky).png}
+      \caption{$newton$-$cholesky$ solver}
+      \label{fig:sample6d}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+      \includegraphics[width=\linewidth]{LRMC(sag).png}
+      \caption{$sag$ solver}
+      \label{fig:sample6f}
+    \end{subfigure}
+  \end{figure}
+
+  \section*{Blind Tests}
   
-
 
 \end{titlepage}
 
