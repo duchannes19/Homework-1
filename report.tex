@@ -20,80 +20,81 @@
   {\large\today\par}
 \end{titlepage}
 
-\section*{Project Overview}
-
-The goal is to provide two different solution for a 10-class classification problem.
-
-\section{Dataset}
-
-The datasets used in this project consists in training sets and blind test sets.
-The training sets are composed by 50000 samples, each one with 100 features for Dataset 1 and 1000 features for Dataset 2.
-The blind test sets are composed by 10000 samples, each one with 100 features for Dataset 1 and 1000 features for Dataset 2.
-The labels are 10, one for each class.
-
-\begin{itemize}
-  \item \texttt{X\_train}: 50000 samples for each dataset.
-  \item \texttt{n\_features}: 100 for Dataset 1 and 1000 for Dataset 2.
-
-\end{itemize}
-
-\section{Data Exploration}
-The datasets, that are in a csv file, the elements $V^{(i)}$ belonging
-to the $X$ column are feature vectors that represent the input data.
-\newline
-\newline
-The Y column contains the associated labels $C_k$(k=0,...9).
-\newline
-\newline
-Thus, each line i in column X is a feature vector structured as:
-\newline
-\newline
-[$V^{(i)}_1$, $V^{(i)}_2$, ..., $V^{(i)}_j$, ... , $V^{(i)}_d$]
-\newline
-\newline
-Where d is the size of the feature vector with sizes described before.
-\newline
-\newline
-And $i=1,...,n$, where n is the number of samples in the dataset as specified before.
-\newline
-\newline
-These are loaded with an helper function called \texttt{load\_data} that returns the training set in the X matrix and the labels in the Y vector.
-\newline
-\newline
-Then the training set is split into \texttt{X\_train} and \texttt{Y\_train} with a test size of $0.2$ and different random states.
-\newline
-\newline
-Since the dataset is already vectorized, no further preprocessing is needed at the moment.
-
-\section{Metrics}
-The metrics used to evaluate the models are the accuracy and the confusion matrix.
-\newline
-
-\subsection{Precision}
-Precision is a measure of the accuracy of the positive predictions made by a model. It is the ratio of true positive predictions to the total number of positive predictions made by the model (both true positives and false positives). Precision is calculated using the formula:
-\[
-  \text{Precision} = \frac{\text{True Positives}}{\text{True Positives + False Positives}}
-\]
-Precision provides insight into the model's ability to avoid making false positive predictions. A high precision indicates that when the model predicts a positive class, it is likely to be correct.
-
-\subsection{Recall (Sensitivity or True Positive Rate)}
-Recall measures the ability of a model to correctly identify all relevant instances of the positive class. It is the ratio of true positive predictions to the total number of actual positive instances in the dataset (including both true positives and false negatives). Recall is calculated using the formula:
-\[
-  \text{Recall} = \frac{\text{True Positives}}{\text{True Positives + False Negatives}}
-\]
-Recall is especially important when the cost of false negatives (missing a positive instance) is high, as it focuses on minimizing false negatives.
-
-\subsection{F1-Score}
-The F1-score is the harmonic mean of precision and recall. It provides a balanced measure that considers both false positives and false negatives. The F1-score is calculated using the formula:
-\[
-  \text{F1-Score} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision + Recall}}
-\]
-F1-score is useful when there is an uneven class distribution or when false positives and false negatives have different consequences.
-
-\subsection{Support}
-Support refers to the number of actual instances of each class in the dataset. It is the count of true positive and true negative instances for each class. Support is not directly involved in the calculation of precision, recall, or F1-score, but it provides context by showing how many instances belong to each class.
-
 \begin{titlepage}
+
+  \section*{Project Overview}
+
+  The goal is to provide two different solution for a 10-class classification problem.
+
+  \section{Dataset}
+
+  The datasets used in this project consists in training sets and blind test sets.
+  The training sets are composed by 50000 samples, each one with 100 features for Dataset 1 and 1000 features for Dataset 2.
+  The blind test sets are composed by 10000 samples, each one with 100 features for Dataset 1 and 1000 features for Dataset 2.
+  The labels are 10, one for each class.
+
+  \begin{itemize}
+    \item \texttt{X\_train}: 50000 samples for each dataset.
+    \item \texttt{n\_features}: 100 for Dataset 1 and 1000 for Dataset 2.
+
+  \end{itemize}
+
+  \section{Data Exploration}
+  The datasets, that are in a csv file, the elements $V^{(i)}$ belonging
+  to the $X$ column are feature vectors that represent the input data.
+  \newline
+  \newline
+  The Y column contains the associated labels $C_k$(k=0,...9).
+  \newline
+  \newline
+  Thus, each line i in column X is a feature vector structured as:
+  \newline
+  \newline
+  [$V^{(i)}_1$, $V^{(i)}_2$, ..., $V^{(i)}_j$, ... , $V^{(i)}_d$]
+  \newline
+  \newline
+  Where d is the size of the feature vector with sizes described before.
+  \newline
+  \newline
+  And $i=1,...,n$, where n is the number of samples in the dataset as specified before.
+  \newline
+  \newline
+  These are loaded with an helper function called \texttt{load\_data} that returns the training set in the X matrix and the labels in the Y vector.
+  \newline
+  \newline
+  Then the training set is split into \texttt{X\_train} and \texttt{Y\_train} with a test size of $0.2$ and different random states.
+  \newline
+  \newline
+  Since the dataset is already vectorized, no further preprocessing is needed at the moment.
+
+  \section{Metrics}
+  The metrics used to evaluate the models are the accuracy and the confusion matrix.
+  \newline
+
+  \subsection{Precision}
+  Precision is a measure of the accuracy of the positive predictions made by a model. It is the ratio of true positive predictions to the total number of positive predictions made by the model (both true positives and false positives). Precision is calculated using the formula:
+  \[
+    \text{Precision} = \frac{\text{True Positives}}{\text{True Positives + False Positives}}
+  \]
+  Precision provides insight into the model's ability to avoid making false positive predictions. A high precision indicates that when the model predicts a positive class, it is likely to be correct.
+
+  \subsection{Recall (Sensitivity or True Positive Rate)}
+  Recall measures the ability of a model to correctly identify all relevant instances of the positive class. It is the ratio of true positive predictions to the total number of actual positive instances in the dataset (including both true positives and false negatives). Recall is calculated using the formula:
+  \[
+    \text{Recall} = \frac{\text{True Positives}}{\text{True Positives + False Negatives}}
+  \]
+  Recall is especially important when the cost of false negatives (missing a positive instance) is high, as it focuses on minimizing false negatives.
+
+  \subsection{F1-Score}
+  The F1-score is the harmonic mean of precision and recall. It provides a balanced measure that considers both false positives and false negatives. The F1-score is calculated using the formula:
+  \[
+    \text{F1-Score} = \frac{2 \times \text{Precision} \times \text{Recall}}{\text{Precision + Recall}}
+  \]
+  F1-score is useful when there is an uneven class distribution or when false positives and false negatives have different consequences.
+
+  \subsection{Support}
+  Support refers to the number of actual instances of each class in the dataset. It is the count of true positive and true negative instances for each class. Support is not directly involved in the calculation of precision, recall, or F1-score, but it provides context by showing how many instances belong to each class.
+
   \begin{center}
     {\Huge\bfseries Classification\par}
   \end{center}
@@ -125,10 +126,7 @@ Support refers to the number of actual instances of each class in the dataset. I
   \newline
   The resulting variables (\(X\_train1\), \(X\_test1\), \(Y\_train1\), \(Y\_test1\), etc.) are now ready for subsequent machine learning tasks.
 
-\end{titlepage}
-
-\begin{titlepage}
-  \section*{Model Selection}
+  \section*{First Evaluation and Model Selection}
   After the data is loaded and splitted, the user is prompted to choose which of the dataset to use and then what type of model to use for the classification task. The user can choose between:
   \section{Bernoulli}
   BernoulliNB is a Naive Bayes classifier specifically tailored for multivariate Bernoulli models. Similar to MultinomialNB, this classifier is well-suited for handling discrete data.
@@ -179,6 +177,60 @@ Support refers to the number of actual instances of each class in the dataset. I
     \caption{Confusion Matrix for SVM}
     \label{fig:sample2}
   \end{figure}
+
+  \section{Logistic Regression}
+  Logistic regression is a statistical model that in its basic form uses a logistic function to model a binary dependent variable, although many more complex extensions exist. In regression analysis, logistic regression is estimating the parameters of a logistic model.
+  \newline
+  \newline
+  The model has a small problem of never converging and thus never stopping the training, however, it still performs well in terms of accuracy, precision and recall.
+
+  \begin{itemize}
+    \item Overall accuracy is 98\%, indicating that the model correctly predicts the class labels for 98\% of the instances in the dataset.
+    \item High F1-scores (close to 1.0) indicate a good balance between precision and recall, this means that the model is robust enough.
+    \item High recall values (close to 1.0) indicate that the model captures a high percentage of actual positive instances, which is fine.
+    \item Precision also is close to 1.0, meaning that the model has low false positive rate.
+  \end{itemize}
+
+  The model performs very well across various metrics, indicating its effectiveness in classifying instances in the given dataset.
+  \newline
+  \newline
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.55\textwidth]{LRCM.png}
+    \caption{Confusion Matrix for Logistic Regression}
+    \label{fig:sample3}
+  \end{figure}
+
+  \section*{Second Evaluation and Model Selection}
+  In this second batch we are using the same models as before, but with a different approach to the data.
+
+  \section{Bernoulli to MultinomialNB}
+  The Bernoulli model was almost fine, but still we want to improve the accuracy of the model, so we are going to use a MultinomialNB model.
+
+  \begin{itemize}
+    \item The accuracy is around 98\% which is better than the BernoulliNB model.
+    \item Even the F1-scores are generally high, with a minimum of 0.96, better than the BernoulliNB model (minimum of 0.71).
+    \item Recall is also higher, with a minimum of 0.94, better than the BernoulliNB model (minimum of 0.72).
+    \item Precision is higher too, with a minimum of 0.94, better than the BernoulliNB model (minimum of 0.56).
+  \end{itemize}
+
+  The MultinomialNB model appears to be better suited for the given dataset, providing higher accuracy and more balanced precision-recall trade-offs across all classes compared to the BernoulliNB model.
+  \newline
+  \newline
+
+  \begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.55\textwidth]{MNCM.png}
+    \caption{Confusion Matrix for MultinomialNB}
+    \label{fig:sample4}
+  \end{figure}
+
+  \section{SVM}
+  The SVM was perfoming well, but I want to give a slight modification to the hyperparameters, so I'm going to use polynomial kernel instead of linear.
+
+  
+
 
 \end{titlepage}
 
