@@ -3,6 +3,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{subcaption}
+\usepackage{array}
 
 \begin{document}
 
@@ -67,7 +68,7 @@
   \newline
   \newline
   Since the dataset is already vectorized, no further preprocessing is needed at the moment.
-  
+
   \section{Metrics}
   The metrics used to evaluate the models are the accuracy and the confusion matrix.
   \newline
@@ -207,7 +208,7 @@
   In this second batch we are using the same models as before, but with a different approach to the data.
 
   \section{Bernoulli to MultinomialNB}
-  The Bernoulli model was almost fine, but still we want to improve the accuracy of the model, so we are going to use a MultinomialNB model.
+  The Bernoulli model was almost fine, but still we want to improve the accuracy of the model, so we are going to use a MultinomialNB model with a multiclass approach.
 
   \begin{itemize}
     \item The accuracy is around 98\% which is better than the BernoulliNB model.
@@ -299,7 +300,48 @@
   \end{figure}
 
   \section*{Blind Tests}
-  
+  We were provided with blind tests in the format of csv files that are structured as follows:
+  \newline
+  \newline
+
+  \begin{table}[htbp]
+    \centering
+    \begin{tabular}{|c|>{\centering\arraybackslash}m{8cm}|}
+      \hline
+      Index & X \\
+      \hline
+      % Add your data here
+      0 & [$V^{(0)}_1$, $V^{(0)}_2$, ..., $V^{(0)}_j$, ... , $V^{(0)}_d$] \\
+      \hline
+      \dots & \dots \\
+      \hline
+      i & [$V^{(i)}_1$, $V^{(i)}_2$, ..., $V^{(i)}_j$, ... , $V^{(i)}_d$] \\
+      \hline
+      \dots & \dots \\
+      \hline
+      N & [$V^{(N)}_1$, $V^{(N)}_2$, ..., $V^{(N)}_j$, ... , $V^{(N)}_d$] \\
+      \hline
+    \end{tabular}
+    \label{tab:sample}
+  \end{table}
+
+  The blind test structure consists of a two-column table with "Index" and "X." The "Index" column ranges from 0 to N, representing the index of each feature vector. The "X" column contains feature vectors denoted as arrays [Vij] with elements Vij, where "i" is the index and "j" ranges from 1 to d, representing features. This format signifies N samples, each with a feature vector of length d.
+  \newline
+  \newline
+
+  \section{Predictions}
+  The predictions are made using the best model for each dataset, the results are the following:
+
+  \begin{itemize}
+    \item BernoulliNB: [3 8 8 ... 5 1 7]
+    \item SVM with linear kernel: [5 8 8 ... 5 1 7]
+    \item Logistic Regression: [3 8 8 ... 5 1 7]
+    \item MultinomialNB: [3 8 8 ... 5 1 7]
+    \item SVM with poly kernel: [3 8 8 ... 5 1 7]
+    \item Logistic Regression with multiclass: [3 8 8 ... 5 1 7]
+  \end{itemize}
+
+  The predictions are saved in two csv files, one for each database.
 
 \end{titlepage}
 
