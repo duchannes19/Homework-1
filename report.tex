@@ -100,7 +100,7 @@
   \begin{center}
     {\Huge\bfseries Classification\par}
   \end{center}
-  \vspace{2cm}
+  \vspace{0.5cm}
 
   \section{Data Loading and Splitting}
 
@@ -123,14 +123,14 @@
   The \texttt{test\_size} parameter dictates the proportion allocated for testing (20\%), while \texttt{random\_state} ensures reproducibility.
   \newline
   \newline
-  The code concludes by acknowledging the completion of data loading and splitting.
-  \newline
-  \newline
   The resulting variables (\(X\_train1\), \(X\_test1\), \(Y\_train1\), \(Y\_test1\), etc.) are now ready for subsequent machine learning tasks.
+  \newline
+  \newline
+  Additionally, the \(X_{\text{train}}\) is scaled with the \texttt{StandardScaler} function for dataset 1 and with the \texttt{MinMaxScaler} function for dataset 2. This is done to help the fitting process of the models.
 
   \section*{First Evaluation with Binary Classification}
   After the data is loaded and splitted, the user is prompted to choose which of the dataset to use and then what type of model to use for the classification task. The user can choose between:
-  \section{Bernoulli}
+  \section{Bernoulli} 
   BernoulliNB is a Naive Bayes classifier specifically tailored for multivariate Bernoulli models. Similar to MultinomialNB, this classifier is well-suited for handling discrete data.
   \newline
   \newline
@@ -139,15 +139,16 @@
   BernoulliNB is preferred over other Naive Bayes classifiers when dealing with datasets where features are binary or boolean.
   \newline
   \newline
-  It is well-suited for problems involving discrete, binary decision-making based on the presence or absence of features.
   Additionally, BernoulliNB is a simpler model with fewer parameters, making it advantageous for scenarios with limited training data and leading to faster training and prediction times.
-
+  We will use this model for the first evaluation and MultinomialNB for the multiclass evaluation.
   \subsection{Classification}
-  Overall the model performs well, with an average accuracy of 90\%, however class 3 has a lower recall of 71\%, meaning that the model struggles to capture all instances of the class.
+  Overall the model performs well, with an average accuracy of 90\%.
   \newline
   \newline
-  Even class 4 has a lower precision of 78\%, meaning that when the model predicts this class it's not always correct.
-
+  Recall is 71\%, meaning that the model captures a high percentage of actual positive instances.
+  \newline
+  \newline
+  Precision is 78\%, meaning that the model has low false positive rate.
   \begin{figure}[htbp]
     \centering
     \includegraphics[width=0.4\textwidth]{bernoulliCM.png}
@@ -264,7 +265,7 @@
     \item Lastly the $lbfgs$ solver, it converged but the result was medium: accuracy of 0.89, recall of 0.90, precision of 0.95 and f1-score of 0.89.
   \end{itemize}
 
-  The Logistic Regression model with the $saga$ solver still seems to be the best choice.
+  The Logistic Regression model with the $saga$ solver still seems to be the best choice, by adding the $multiclass$ option the results doesn't change much.
 
   \begin{figure}[htbp]
     \centering
@@ -297,6 +298,12 @@
       \caption{$sag$ solver}
       \label{fig:sample6f}
     \end{subfigure}
+    \hfill
+    \begin{subfigure}[t]{0.3\linewidth}
+      \includegraphics[width=\linewidth]{LRMC(saga).png}
+      \caption{$saga$ solver}
+      \label{fig:sample6e}
+    \end{subfigure}
   \end{figure}
 
   \section*{Blind Tests}
@@ -325,7 +332,7 @@
     \label{tab:sample}
   \end{table}
 
-  The blind test structure consists of a two-column table with "Index" and "X." The "Index" column ranges from 0 to N, representing the index of each feature vector. The "X" column contains feature vectors denoted as arrays [Vij] with elements Vij, where "i" is the index and "j" ranges from 1 to d, representing features. This format signifies N samples, each with a feature vector of length d.
+  The blind test structure consists of a two-column table with "Index" and "X." The "Index" column ranges from 0 to \(N\), representing the index of each feature vector. The "X" column contains feature vectors denoted as arrays \([V_{ij}]\) with elements \(V_{ij}\), where \(i\) is the index and \(j\) ranges from 1 to \(d\), representing features. This format signifies \(N\) samples, each with a feature vector of length \(d\).
   \newline
   \newline
 
@@ -342,6 +349,23 @@
   \end{itemize}
 
   The predictions are saved in two csv files, one for each database.
+
+  \newpage
+
+  \section*{Comparison with the second dataset}
+  The second dataset is similar to the first one, but with many more labels, so we are going to use the same models as before to see how they perform.
+
+  \begin{itemize}
+    \item $BernoulliNB$: we have an improvement on accuracy to 0.96, the recall has a minimum of 0.88, the precision has a minimum of 0.85 and f1-score with a minimum of 0.91. So it performs better.
+    \item $SVM$ ($linear$): here the performance decreases, with an accuracy of 0.70, a recall with a minimum of 0.16, a precision with a minimum of 0.33 and an f1-score with a minimum of 0.27.
+    \item $Logistic$ $Regression$ ($saga$): the performance is similar to the first dataset but slightly worse, with an accuracy of 0.94, a recall with a minimum of 0.67, a precision with a minimum of 0.83 and an f1-score with a minimum of 0.80.
+    \item $MultinomialNB$: the performance is slightly worse here too, with an accuracy of 0.97, a recall with a minimum of 0.91, a precision with a minimum of 0.91 and an f1-score with a minimum of 0.91.
+    \item $SVM$ ($poly$): it's a bit worse, with an accuracy of 0.96, a recall with a minimum of 0.84, a precision with a minimum of 0.90 and an f1-score with a minimum of 0.91.
+    \item $Logistic$ $Regression$ ($multiclass$, $saga$): the performance is similar to the first dataset, with an accuracy of 0.96, a recall with a minimum of 0.81, a precision with a minimum of 0.83 and an f1-score with a minimum of 0.88.
+  \end{itemize}
+
+  \section{Final Predictions}
+  The predictions calculated with the second dataset are the same as the first one.
 
 \end{titlepage}
 
