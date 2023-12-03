@@ -14,12 +14,11 @@
   \vspace{2cm}
   {\Large\itshape Homework 1\par}
   \vspace{0.5cm}
-  {\large\itshape Goal: Develop models for 10-class classification problems with medium and large input space\par}
+  {\large\itshape Goal: Provide solutions for two 10-class classification problems with medium and large input space\par}
   \vfill
   {\Large Andrea Massignan\par}
   {\Large 1796802\par}
   \vfill
-  {\large\today\par}
 \end{titlepage}
 
 \begin{titlepage}
@@ -364,8 +363,25 @@
     \item $Logistic$ $Regression$ ($multiclass$, $saga$): the performance is similar to the first dataset, with an accuracy of 0.96, a recall with a minimum of 0.81, a precision with a minimum of 0.83 and an f1-score with a minimum of 0.88.
   \end{itemize}
 
+  \section{Different Loading Times}
+  I have noticed that when working with the second dataset the loading times are a bit longer depending on the chosen model.
+  When using BernoulliNB and MultinomialNB the loading is almost the same.
+  SVM has a slight degradation on loading but we keep around 30-40 seconds of loading time.
+  The Logistic Regression model has a huge degradation on loading, with a loading time of around 2-3 minutes.
+
+  \newpage
+
   \section{Final Predictions}
-  The predictions calculated with the second dataset are the same as the first one.
+  The predictions calculated with the second dataset are the following:
+
+  \begin{itemize}
+    \item BernoulliNB: [3 8 8 ... 5 1 7]
+    \item SVM with linear kernel: [3 8 8 ... 5 1 7]
+    \item Logistic Regression: [3 8 8 ... 5 1 7]
+    \item MultinomialNB: [3 8 8 ... 5 1 7]
+    \item SVM with poly kernel: [3 8 8 ... 5 1 7]
+    \item Logistic Regression with multiclass: [3 8 8 ... 5 1 7]
+  \end{itemize}
 
 \end{titlepage}
 
